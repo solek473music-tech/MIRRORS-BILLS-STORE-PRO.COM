@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Oficial | Productos & Soluciones</title>
+    <style>
+        /* Estilos Generales y Resets */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Encabezado y Navegación */
+        header {
+            background-color: #1a252f;
+            color: #fff;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        .search-bar {
+            display: flex;
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+        }
+
+        .search-bar button {
+            padding: 0.5rem 1rem;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #3498db;
+        }
+
+        .cart-icon {
+            background-color: #27ae60;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Banner de Enganche (Hero Section) */
+        .hero {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .btn-cta {
+            background-color: #e67e22;
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .btn-cta:hover {
+            background-color: #d35400;
+            transform: translateY(-2px);
+        }
+
+        /* Sección de Beneficios */
+        .benefits {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .benefit-card h3 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Catálogo de Productos Informático */
+        .products-section {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            color: #2c3e50;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-image {
+            height: 200px;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            font-size: 1.2rem;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .product-specs {
+            background: #f8f9fa;
+            padding: 0.8rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-specs ul {
+            list-style-position: inside;
+        }
+
+        .product-price {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #27ae60;
+            margin-bottom: 1rem;
+        }
+
+        .btn-add {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 0.7rem;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: auto;
+        }
+
+        .btn-add:hover {
+            background-color: #2980b9;
+        }
+
+        /* Pie de Página y Soporte */
+        footer {
+            background-color: #1a252f;
+            color: white;
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h4 {
+            margin-bottom: 1rem;
+            color: #3498db;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column a {
+            color: #bdc3c7;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid #34495e;
+            padding-top: 1rem;
+            font-size: 0.85rem;
+            color: #bdc3c7;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Encabezado / Navegación -->
+    <header>
+        <div class="header-container">
+            <div class="logo">MiTiendaPro</div>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="Buscar productos, marcas o componentes...">
+                <button>Buscar</button>
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#promociones">Promociones</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="#soporte">Soporte</a></li>
+                </ul>
+            </nav>
+
+            <div class="cart-icon" onclick="alert('Carrito de compras abierto')">
+                🛒 Carrito (<span id="cart-count">0</span>)
+            </div>
+        </div>
+    </header>
+
+    <!-- Banner de Enganche (Hero) -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>Tecnología Garantizada para Tu Estilo de Vida</h1>
+            <p>Descubre productos seleccionados con ficha técnica detallada, garantía de fábrica y envío express a todo el país.</p>
+            <a href="#productos" class="btn-cta">Ver Ofertas Destacadas</a>
+        </div>
+    </section>
+
+    <!-- Beneficios Claros -->
+    <section class="benefits">
+        <div class="benefit-card">
+            <h3>🚚 Envío Garantizado</h3>
+            <p>Rastreo en tiempo real y entregas seguras directo a tu domicilio.</p>
+        </div>
+        <div class="benefit-card">
+            <h3>🛡️ Garantía Oficial</h3>
+            <p>Todos nuestros artículos cuentan con soporte directo y reemplazo inmediato.</p>
+        </div>
+        <div class="benefit-card">
+            <h3>💳 Pago Seguro</h3>
+            <p>Aceptamos tarjetas de débito, crédito y métodos de pago verificados.</p>
+        </div>
+    </section>
+
+    <!-- Catálogo de Productos -->
+    <section class="products-section" id="productos">
+        <h2 class="section-title">Productos Destacados</h2>
+        
+        <div class="product-grid">
+            
+            <!-- Producto 1 -->
+            <div class="product-card">
+                <div class="product-image">Imagen del Producto</div>
+                <div class="product-info">
+                    <h3 class="product-title">Laptop Pro High-Performance</h3>
+                    <p class="product-description">Ideal para trabajo pesado, programación y multitarea fluida gracias a su arquitectura de última generación.</p>
+                    
+                    <div class="product-specs">
+                        <strong>Especificaciones clave:</strong>
+                        <ul>
+                            <li>16 GB RAM DDR5</li>
+                            <li>512 GB SSD NVMe</li>
+                            <li>Batería de hasta 10 horas</li>
+                        </ul>
+                    </div>
+
+                    <div class="product-price">$14,999 MXN</div>
+                    <button class="btn-add" onclick="addToCart()">Agregar al Carrito</button>
+                </div>
+            </div>
+
+            <!-- Producto 2 -->
+            <div class="product-card">
+                <div class="product-image">Imagen del Producto</div>
+                <div class="product-info">
+                    <h3 class="product-title">Audífonos Noise Cancelling</h3>
+                    <p class="product-description">Aislamiento acústico profesional con micrófonos integrados para llamadas de alta claridad.</p>
+                    
+                    <div class="product-specs">
+                        <strong>Especificaciones clave:</strong>
+                        <ul>
+                            <li>Cancelación de ruido activa</li>
+                            <li>Conexión Bluetooth 5.3</li>
+                            <li>Carga rápida USB-C</li>
+                        </ul>
+                    </div>
+
+                    <div class="product-price">$2,499 MXN</div>
+                    <button class="btn-add" onclick="addToCart()">Agregar al Carrito</button>
+                </div>
+            </div>
+
+            <!-- Producto 3 -->
+            <div class="product-card">
+                <div class="product-image">Imagen del Producto</div>
+                <div class="product-info">
+                    <h3 class="product-title">Smartwatch Deportivo v2</h3>
+                    <p class="product-description">Monitor continuo de actividad física, ritmo cardíaco y notificaciones en tiempo real en tu muñeca.</p>
+                    
+                    <div class="product-specs">
+                        <strong>Especificaciones clave:</strong>
+                        <ul>
+                            <li>Resistente al agua 5 ATM</li>
+                            <li>Pantalla AMOLED HD</li>
+                            <li>GPS integrado</li>
+                        </ul>
+                    </div>
+
+                    <div class="product-price">$1,899 MXN</div>
+                    <button class="btn-add" onclick="addToCart()">Agregar al Carrito</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Pie de Página (Contactos y Soporte) -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column" id="soporte">
+                <h4>Soporte al Cliente</h4>
+                <ul>
+                    <li><a href="#">Centro de Ayuda</a></li>
+                    <li><a href="#">Estado de tu Pedido</a></li>
+                    <li><a href="#">Políticas de Devolución</a></li>
+                    <li><a href="#">Garantías</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column" id="contacto">
+                <h4>Atención & Contacto</h4>
+                <ul>
+                    <li><a href="#">💬 Chat en Vivo</a></li>
+                    <li><a href="#">✉️ soporte@mitiendapro.com</a></li>
+                    <li><a href="#">📞 800-000-0000</a></li>
+                    <li><a href="#">Horario: L-V 9:00 a 18:00 hrs</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column" id="promociones">
+                <h4>Promociones</h4>
+                <p style="font-size: 0.85rem; color: #bdc3c7; margin-bottom: 0.5rem;">Suscríbete para recibir ofertas exclusivas en tu correo.</p>
+                <input type="email" placeholder="Tu correo electrónico" style="width: 100%; padding: 0.5rem; border: none; border-radius: 4px;">
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            &copy; 2026 MiTiendaPro. Todos los derechos reservados. Sitio web informativo y comercial.
+        </div>
+    </footer>
+
+    <!-- Lógica Interactiva Básica -->
+    <script>
+        let count = 0;
+        function addToCart() {
+            count++;
+            document.getElementById('cart-count').innerText = count;
+            alert('¡Producto agregado al carrito con éxito!');
+        }
+    </script>
+</body>
+</html>
